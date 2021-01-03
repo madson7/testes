@@ -24,7 +24,7 @@ hostnamectl set-hostname compute1
 cat >> /etc/hosts << END
 
 # controller
-192.168.0.111       controller
+192.168.0.22       controller
 # compute1
 192.168.0.131       compute1
 # block1
