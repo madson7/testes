@@ -18,6 +18,15 @@ connection = mysql+pymysql://nova:NOVA_DBPASS@controller/nova_api
 connection = mysql+pymysql://nova:NOVA_DBPASS@controller/nova
 [DEFAULT]
 transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
+vif_plugging_timeout = 300
+vif_plugging_is_fatal = True
+compute_driver = libvirt.LibvirtDriver
+default_ephemeral_format = ext4
+pointer_model = ps2mouse
+graceful_shutdown_timeout = 5
+metadata_workers = 2
+osapi_compute_workers = 2
+
 [api]
 auth_strategy = keystone
 [keystone_authtoken]
@@ -30,7 +39,7 @@ user_domain_name = Default
 project_name = service
 username = nova
 password = NOVA_PASS
-my_ip = 192.168.0.22
+my_ip = 192.168.0.111
 [vnc]
 enabled = true
 server_listen = $my_ip
@@ -48,6 +57,10 @@ user_domain_name = Default
 auth_url = http://controller:5000/v3
 username = placement
 password = PLACEMENT_PASS
+[wsgi]
+api_paste_config = /etc/nova/api-paste.ini
+[scheduler]
+workers = 2
 END
 
 su -s /bin/sh -c "nova-manage api_db sync" nova

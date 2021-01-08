@@ -9,9 +9,9 @@ connection = mysql+pymysql://keystone:KEYSTONE_DBPASS@controller/keystone
 provider = fernet
 END
 
+mysql -u keystone -pKEYSTONE_DBPASS
+
 su -s /bin/sh -c "keystone-manage db_sync" keystone
-# 2020-12-20 21:43:27.056 16982 WARNING py.warnings [-] /usr/lib/python3/dist-packages/pymysql/cursors.py:170: Warning: (1280, "Name 'assignment_pkey' ignored for PRIMARY key.")
-#   result = self._query(query)
 
 keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone
 keystone-manage credential_setup --keystone-user keystone --keystone-group keystone
@@ -42,10 +42,11 @@ END
 
 chmod +x admin-openrc.sh
 
-. admin-openrc.sh
-
-openstack project create --domain default --description "Service Project" service
-
 openstack --os-auth-url http://controller:5000/v3 \
   --os-project-domain-name Default --os-user-domain-name Default \
   --os-project-name admin --os-username admin --os-password ADMIN_PASS token issue
+
+. admin-openrc.sh
+
+openstack domain create --description "An Example Domain" example # openstack domain delete example
+openstack project create --domain Default --description "Service Project" service

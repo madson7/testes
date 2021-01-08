@@ -1,7 +1,7 @@
 #!/bin/bash
 . admin-openrc.sh
 
-openstack user create --domain default glance --password GLANCE_PASS
+openstack user create --domain Default glance --password GLANCE_PASS
 openstack role add --project service --user glance admin
 openstack service create --name glance --description "OpenStack Image" image
 
@@ -36,3 +36,6 @@ su -s /bin/sh -c "glance-manage db_sync" glance
 
 systemctl enable glance-api
 systemctl start glance-api
+
+
+glance image-list

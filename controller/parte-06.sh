@@ -28,8 +28,6 @@ password = PLACEMENT_PASS
 END
 
 su -s /bin/sh -c "placement-manage db sync" placement
-# /usr/lib/python3/dist-packages/pymysql/cursors.py:170: Warning: (1280, "Name 'alembic_version_pkc' ignored for PRIMARY key.")
-#   result = self._query(query)
 
 systemctl restart apache2
 

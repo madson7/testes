@@ -7,7 +7,7 @@ hostnamectl set-hostname controller
 cat >> /etc/hosts << END
 
 # controller
-192.168.0.22       controller
+192.168.0.111       controller
 # compute1
 192.168.0.131       compute1
 # block1
@@ -24,7 +24,14 @@ network:
   ethernets:
     enp0s3:
       addresses:
-      - 192.168.0.22/24
+      - 10.0.2.11/24
+      gateway4: 10.0.2.1
+      nameservers:
+        addresses:
+        - 8.8.8.8
+    enp0s8:
+      addresses:
+      - 192.168.0.111/24
       gateway4: 192.168.0.1
       nameservers:
         addresses:
