@@ -7,15 +7,15 @@ hostnamectl set-hostname controller
 cat >> /etc/hosts << END
 
 # controller
-192.168.0.111       controller
+10.0.2.11      controller
 # compute1
-192.168.0.131       compute1
+10.0.2.31       compute1
 # block1
-192.168.0.141       block1
+10.0.2.41       block1
 # object1
-192.168.0.151       object1
+10.0.2.51       object1
 # object2
-192.168.0.161       object2
+10.0.2.61       object2
 END
 
 cat > /etc/netplan/00-installer-config.yaml << END
@@ -40,5 +40,3 @@ network:
 END
 
 netplan apply
-
-reboot

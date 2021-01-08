@@ -39,7 +39,7 @@ user_domain_name = Default
 project_name = service
 username = nova
 password = NOVA_PASS
-my_ip = 192.168.0.111
+my_ip = 10.0.2.11
 [vnc]
 enabled = true
 server_listen = $my_ip
